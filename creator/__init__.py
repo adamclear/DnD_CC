@@ -12,16 +12,18 @@ login_manager.login_message_category = 'info'
 
 def create_app():
     app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'hbtn_foundations_hacksprint'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///creator.db'
 
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
     from creator.users.routes import users
-    from creator.characters.routes import characters
+    #from creator.characters.routes import characters
     from creator.main.routes import main
     app.register_blueprint(users)
-    app.register_blueprint(characters)
+    #app.register_blueprint(characters)
     app.register_blueprint(main)
 
     return app

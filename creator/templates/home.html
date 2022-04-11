@@ -1,36 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="utf-8">
-        <title>D&D 5E Character Creator</title>
-        <link rel="stylesheet" href="styles/footer.css">
-        <link rel="stylesheet" href="styles/header.css">
-        <link rel="stylesheet" href="styles/body.css">
-        <link rel="icon" href="images/dHolbie.png" type="image/png">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="../static/scripts/home.js"></script>
-
-    </head>
-
-    <body style="margin: 0; padding: 0">
-
-        <header class="block">
-            <div class="logo">
-            </div>
-            <div class="banner-text">
-                D&D 5th Edition Character Creator   
-            </div>
-        </header>
-
-        <footer>
-            <div class="footer-text">
-                Project for Holberton School Tulsa - Uses content from
-                the Systems Reference Document for 5th Edition Dungeons 
-                & Dragons. Copyright Wizards of the Coast.
-            </div>
-        </footer>
-        
-    </body>
-
-</html>
+{% extends "layout.html" %}
+{% block content %}
+    <h1>
+        Welcome to the HolB&D Character Creator!
+    </h1>
+    <p>
+        Please login or sign up to use this app.
+    </p>
+{% endblock content %}
