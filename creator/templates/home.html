@@ -3,7 +3,13 @@
     <h1>
         Welcome to the HolB&D Character Creator!
     </h1>
-    <p>
-        Please login or sign up to use this app.
-    </p>
+    {% if current_user.is_authenticated %}
+        <p>
+            Have fun creating your characters!
+        </p>
+    {% else %}
+        <p>
+            Please login or sign up to get started!
+        </p>
+    {% endif %}
 {% endblock content %}
