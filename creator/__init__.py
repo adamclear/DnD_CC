@@ -20,10 +20,10 @@ def create_app():
     login_manager.init_app(app)
 
     from creator.users.routes import users
-    #from creator.characters.routes import characters
+    from creator.characters.routes import characters
     from creator.main.routes import main
     app.register_blueprint(users)
-    #app.register_blueprint(characters)
+    app.register_blueprint(characters)
     app.register_blueprint(main)
 
     return app
