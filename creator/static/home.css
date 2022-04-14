@@ -1,0 +1,14 @@
+section.NewExist {
+    display: flex;
+    margin-top: 50px;
+    column-count: 2;
+}
+
+.btn {
+    flex-grow: 1;
+    width: 50%;
+    margin-left: 5px;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid black;
+}
