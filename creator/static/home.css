@@ -12,3 +12,20 @@ section.NewExist {
     padding: 8px;
     border: 1px solid black;
 }
+
+.background-image {
+    height: 150%;
+    width: 100%;
+    background-image: url('./images/DnD_background.jpeg');
+}
+
+h1 {
+    text-align: center;
+    padding-top: 300px;
+    color: white;
+}
+
+p {
+    text-align: center;
+    color: white;
+}
