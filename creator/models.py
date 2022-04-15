@@ -110,10 +110,23 @@ class Character(db.Model):
     def calc_mod(self, number):
         diff = number - 10
         if diff > 1:
-            modifier = diff % 2
+            modifier = diff / 2
         elif diff < -1:
             diff = diff * -1
-            modifier = (diff % 2) * -1
+            modifier = (diff / 2) * -1
         else:
             modifier = 0
-        return modifier
+        return int(modifier)
+
+    def calc_ac(self):
+        dex_mod = self.calc_mod(self.dexterity)
+        if self.armor == 'Leather':
+            ac = 11 + dex_mod
+        elif self.armor == 'Hide':
+            if dex_mod >= 2:
+                ac = 12 + 2
+            else:
+                ac = 12 + dex_mod
+        elif self.armor == 'Plate':
+            ac = 18
+        return ac

@@ -63,9 +63,21 @@ def character_sheet(character_id):
         character = Character.query.get(character_id)
         feat_dict = get_class_features(character.id)
         trait_dict = get_char_traits(character.id)
+        char_hp = character.calc_hp()
+        char_ac = character.calc_ac()
+        str_mod = character.calc_mod(character.strength)
+        dex_mod = character.calc_mod(character.dexterity)
+        con_mod = character.calc_mod(character.constitution)
+        int_mod = character.calc_mod(character.intelligence)
+        wis_mod = character.calc_mod(character.wisdom)
+        cha_mod = character.calc_mod(character.charisma)
         return render_template('character_sheet.html', title='Character Sheet', 
                                character=character, feat_dict=feat_dict,
-                               trait_dict=trait_dict)
+                               trait_dict=trait_dict, char_hp=char_hp,
+                               str_mod=str_mod, dex_mod=dex_mod,
+                               con_mod=con_mod, int_mod=int_mod,
+                               wis_mod=wis_mod, cha_mod=cha_mod,
+                               char_ac=char_ac)
     else:
         return redirect(url_for('users.login'))
 

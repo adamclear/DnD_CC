@@ -1,6 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
     <h4>{{ character.name }}</h4>
+    <h4>Stats:</h4>
+        <ul>
+            <li>Strength: {{ character.strength }} Mod: {{ str_mod }}</li>
+            <li>Dexterity: {{ character.dexterity }} Mod: {{ dex_mod }}</li>
+            <li>Constitution: {{ character.constitution }} Mod: {{ con_mod }}</li>
+            <li>Intelligence: {{ character.intelligence }} Mod: {{ int_mod }}</li>
+            <li>Wisdom: {{ character.wisdom }} Mod: {{ wis_mod }}</li>
+            <li>Charisma: {{ character.charisma }} Mod: {{ cha_mod }}</li>
+        </ul>
+    <h4>HP: {{ char_hp }}</h4>
+    <h4>AC: {{ char_ac }}</h4>
     <h4>{{ character.ancestry }}</h4>
     <h4>{{ character.heroic_class }}</h4>
     <h4>Ancestral Traits:</h4>
