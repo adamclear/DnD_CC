@@ -3,12 +3,25 @@
     <h4>{{ character.name }}</h4>
     <h4>{{ character.ancestry }}</h4>
     <h4>{{ character.heroic_class }}</h4>
-    <h4>{{ character.strength }}</h4>
-    <h4>{{ character.dexterity }}</h4>
-    <h4>{{ character.constitution }}</h4>
-    <h4>{{ character.intelligence }}</h4>
-    <h4>{{ character.wisdom }}</h4>
-    <h4>{{ character.charisma }}</h4>
+    <h4>Ancestral Traits:</h4>
+    {% if trait_dict %}
+        {% for key, value in trait_dict.items() %}
+            <h4>{{ key }}</h4>
+            {% for item in value %}
+                <p style="color: black">{{ item }}</p>
+            {% endfor %}
+        {% endfor %}
+    {% elif character.ancestry == 'Human' %}
+        <h4>Ability Score Increase</h4>
+            <p style="color: black">Your ability scores each increase by 1.</p>
+    {% endif %}
+    <h4>Class Abilities:</h4>
+    {% for key, value in feat_dict.items() %}
+        <h4>{{ key }}</h4>
+        {% for item in value %}
+            <p style="color: black">{{ item }}</p>
+        {% endfor %}
+    {% endfor %}
     <section class="NewExist">
         <button type="button" class="btn btn-outline-danger btn-lg">Level Up</button>
         <button type="button" class="btn btn-outline-danger btn-lg">Edit</button>

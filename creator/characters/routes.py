@@ -1,10 +1,12 @@
 from creator import db
 from creator.models import Character
-from creator.characters.utils import roll_stats
+from creator.characters.utils import get_class_features, get_char_traits, roll_stats
 from creator.characters.forms import NewCharacterForm
 from creator.users.utils import gen_id
 from flask import Blueprint, flash, redirect, render_template, url_for
 from flask_login import current_user
+import json
+import requests
 
 characters = Blueprint('characters', __name__)
 
@@ -32,7 +34,6 @@ def new_character():
                                   charisma=form.charisma.data,
                                   ancestry=form.ancestry.data,
                                   heroic_class=form.heroic_class.data,
-                                  level=form.level.data,
                                   weapon=form.weapon.data,
                                   armor=form.armor.data,
                                   player=current_user
@@ -60,7 +61,11 @@ def view_characters():
 def character_sheet(character_id):
     if current_user.is_authenticated:
         character = Character.query.get(character_id)
-        return render_template('character_sheet.html', title='Character Sheet', character=character)
+        feat_dict = get_class_features(character.id)
+        trait_dict = get_char_traits(character.id)
+        return render_template('character_sheet.html', title='Character Sheet', 
+                               character=character, feat_dict=feat_dict,
+                               trait_dict=trait_dict)
     else:
         return redirect(url_for('users.login'))
 
