@@ -1,6 +1,7 @@
 from creator import db, bcrypt
 from creator.models import User
 from creator.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm)
+from creator.users.utils import gen_id
 from flask import Blueprint, flash, redirect, request, render_template, url_for
 from flask_login import current_user, login_user, login_required, logout_user
 
@@ -13,8 +14,12 @@ def register():
         return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
+        id = gen_id()
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = User(id=id, 
+                    username=form.username.data, 
+                    email=form.email.data, 
+                    password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in.', 'success')

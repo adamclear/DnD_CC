@@ -10,8 +10,12 @@
             </p>
     </div>
         <section class="NewExist">
-            <button type="button" class="btn btn-outline-danger btn-lg">Create New</button>
-            <button type="button" class="btn btn-outline-danger btn-lg">View Existing Characters</button>
+            <button type="button" class="btn btn-outline-danger btn-lg">
+                <a href="{{ url_for('characters.new_character') }}">Create New Character</a>
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-lg">
+                <a href="{{ url_for('characters.view_characters') }}">View My Characters</a>
+            </button>
         </section>
         {% else %}
             <p>

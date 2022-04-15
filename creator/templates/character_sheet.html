@@ -1,4 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div>Hello!</div>
+    <h4>{{ character.name }}</h4>
+    <h4>{{ character.ancestry }}</h4>
+    <h4>{{ character.heroic_class }}</h4>
+    <h4>{{ character.strength }}</h4>
+    <h4>{{ character.dexterity }}</h4>
+    <h4>{{ character.constitution }}</h4>
+    <h4>{{ character.intelligence }}</h4>
+    <h4>{{ character.wisdom }}</h4>
+    <h4>{{ character.charisma }}</h4>
+    <section class="NewExist">
+        <button type="button" class="btn btn-outline-danger btn-lg">Level Up</button>
+        <button type="button" class="btn btn-outline-danger btn-lg">Edit</button>
+        <button type="button" class="btn btn-outline-danger btn-lg">Delete</button>
+    </section>
 {% endblock content %}

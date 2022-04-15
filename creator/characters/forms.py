@@ -1,12 +1,18 @@
-from creator.models import User
-from flask_login import current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from wtforms import IntegerField, StringField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange, ValidationError
 
-class CharacterForm(FlaskForm):
+class NewCharacterForm(FlaskForm):
     name = StringField('Name',
                         validators=[DataRequired()])
+    strength = IntegerField('Strength', validators=[DataRequired()])
+    dexterity = IntegerField('Dexterity', validators=[DataRequired()])
+    constitution = IntegerField('Constitution', validators=[DataRequired()])
+    intelligence = IntegerField('Intelligence', validators=[DataRequired()])
+    wisdom = IntegerField('Wisdom', validators=[DataRequired()])
+    charisma = IntegerField('Charisma', validators=[DataRequired()])
     ancestry = StringField('Ancestry', validators=[DataRequired()])
-    char_class = StringField('Class', validators=[DataRequired()])
+    heroic_class = StringField('Class', validators=[DataRequired()])
+    weapon = StringField('Weapon', validators=[DataRequired()])
+    armor = StringField('Armor', validators=[DataRequired()])
     submit = SubmitField('Submit')
