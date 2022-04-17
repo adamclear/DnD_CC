@@ -2,11 +2,12 @@
 """
 This module contains the classes for the creator program.
 """
-#from characters.utils import roll_stats
 from creator import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
+import json
 import random
+import requests
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -69,12 +70,23 @@ class Character(db.Model):
 
     def roll_hp(self):
         hp_die_table = {
-            'Rogue': 6,
+            'Barbarian': 12,
+            'Bard': 8,
+            'Cleric': 8,
+            'Druid': 8,
             'Fighter': 10,
-            'Barbarian': 12
+            'Monk': 8,
+            'Paladin': 10,
+            'Ranger': 10,
+            'Rogue': 6,
+            'Sorcerer': 6,
+            'Warlock': 8,
+            'Wizard': 6
         }
         die_size = hp_die_table[self.heroic_class]
         roll = 0
+        if self.level == 1:
+            roll = die_size
         while roll <= 1:
             roll = random.randint(1, die_size)
         return roll
@@ -120,13 +132,25 @@ class Character(db.Model):
 
     def calc_ac(self):
         dex_mod = self.calc_mod(self.dexterity)
-        if self.armor == 'Leather':
-            ac = 11 + dex_mod
-        elif self.armor == 'Hide':
-            if dex_mod >= 2:
-                ac = 12 + 2
-            else:
-                ac = 12 + dex_mod
-        elif self.armor == 'Plate':
-            ac = 18
-        return ac
+        if self.armor == 'Unarmored':
+            armor_value = 10
+        else:
+            armor_request = requests.get('https://www.dnd5eapi.co/api/equipment/' + self.armor.lower())
+            armor_json = json.loads(armor_request.text)
+            armor_value = int(armor_json['armor_class']['base'])
+            max_bonus = None
+            if armor_json['armor_class']['dex_bonus'] is True:
+                for x in armor_json['armor_class']:
+                    if x == 'max_bonus':
+                        max_bonus = 2
+                if max_bonus is None:
+                    max_bonus = dex_mod
+            if armor_json['armor_class']['dex_bonus'] is False:
+                max_bonus = 0
+            if dex_mod > max_bonus:
+                dex_mod = max_bonus
+        return armor_value + dex_mod
+
+    def calc_prof(self):
+        prof_bonus = int(self.level / 4) + 2
+        return prof_bonus

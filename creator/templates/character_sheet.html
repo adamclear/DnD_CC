@@ -1,20 +1,65 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h4>{{ character.name }}</h4>
-    <h4>Stats:</h4>
-        <ul>
-            <li>Strength: {{ character.strength }} Mod: {{ str_mod }}</li>
-            <li>Dexterity: {{ character.dexterity }} Mod: {{ dex_mod }}</li>
-            <li>Constitution: {{ character.constitution }} Mod: {{ con_mod }}</li>
-            <li>Intelligence: {{ character.intelligence }} Mod: {{ int_mod }}</li>
-            <li>Wisdom: {{ character.wisdom }} Mod: {{ wis_mod }}</li>
-            <li>Charisma: {{ character.charisma }} Mod: {{ cha_mod }}</li>
-        </ul>
+    <h2>{{ character.name }}</h2>
+    <h3>Level {{ character.level }} {{ character.ancestry }} {{ character.heroic_class }}</h3>
+    <section class="NewExist">
+        <button type="button" class="btn btn-outline-danger btn-sm">
+            <a href="{{ url_for('characters.level_up', character_id=character.id) }}">Level Up</a>
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-sm">
+            <a href="{{ url_for('characters.edit_character', character_id=character.id) }}">Edit</a>
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-sm">
+            <a href="{{ url_for('characters.delete', character_id=character.id) }}">Delete</a>
+        </button>
+    </section>
+    <p> </p>
+    <div class="ability_scores">
+        <div class="per_stat">
+            <h2>STR</h2>
+            <h4>{{ character.strength }}</h4>
+            +{{ str_mod }}
+        </div>
+        <div class="per_stat">
+            <h2>DEX</h2>
+            <h4>{{ character.dexterity }}</h4>
+            +{{ dex_mod }}
+        </div>
+        <div class="per_stat">
+            <h2>CON</h2>
+            <h4>{{ character.constitution }}</h4>
+            +{{ con_mod }}
+        </div>
+        <div class="per_stat">
+            <h2>INT</h2>
+            <h4>{{ character.intelligence }}</h4>
+            +{{ int_mod }}
+        </div>
+        <div class="per_stat">
+            <h2>WIS</h2>
+            <h4>{{ character.wisdom }}</h4>
+            +{{ wis_mod }}
+        </div>
+        <div class="per_stat">    
+            <h2>CHA</h2>
+            <h4>{{ character.charisma }}</h4>
+            +{{ cha_mod }}
+        </div>
+    </div>
     <h4>HP: {{ char_hp }}</h4>
     <h4>AC: {{ char_ac }}</h4>
-    <h4>{{ character.ancestry }}</h4>
-    <h4>{{ character.heroic_class }}</h4>
-    <h4>Ancestral Traits:</h4>
+    <h4>Prof Bonus: +{{ prof_bonus }}</h4>
+    <h4>Weapon:</h4>
+    {% for key, value in weapon_dict.items() %}
+            <h4>{{ key }}:</h4>
+            {{ value }}
+    {% endfor %}
+    <h4>Armor:</h4>
+        {% for key, value in armor_dict.items() %}
+            <h4>{{ key }}:</h4>
+            {{ value }}
+        {% endfor %}
+    <h4>{{ character.ancestry }} Traits:</h4>
     {% if trait_dict %}
         {% for key, value in trait_dict.items() %}
             <h4>{{ key }}</h4>
@@ -26,16 +71,11 @@
         <h4>Ability Score Increase</h4>
             <p style="color: black">Your ability scores each increase by 1.</p>
     {% endif %}
-    <h4>Class Abilities:</h4>
+    <h4>{{ character.heroic_class }} Features:</h4>
     {% for key, value in feat_dict.items() %}
         <h4>{{ key }}</h4>
         {% for item in value %}
             <p style="color: black">{{ item }}</p>
         {% endfor %}
     {% endfor %}
-    <section class="NewExist">
-        <button type="button" class="btn btn-outline-danger btn-lg">Level Up</button>
-        <button type="button" class="btn btn-outline-danger btn-lg">Edit</button>
-        <button type="button" class="btn btn-outline-danger btn-lg">Delete</button>
-    </section>
 {% endblock content %}

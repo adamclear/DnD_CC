@@ -113,6 +113,32 @@
                 {% endif %}
             </div>
             <div class="form-group">
+                {{ form.plustwo.label(class="form-control-label") }}
+                {% if form.plustwo.errors %}
+                    {{ form.plustwo(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.plustwo.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.plustwo(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.plusone.label(class="form-control-label") }}
+                {% if form.plusone.errors %}
+                    {{ form.plusone(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.plusone.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.plusone(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
                 {{ form.heroic_class.label(class="form-control-label") }}
                 {% if form.heroic_class.errors %}
                     {{ form.heroic_class(class="form-control form-control-lg is-invalid") }}
