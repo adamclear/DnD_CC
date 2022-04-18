@@ -1,31 +1,50 @@
 section.NewExist {
     display: flex;
-    margin-top: 50px;
+    margin-top: 10px;
     column-count: 2;
 }
 
-.btn {
+button.btn.btn-outline-dark.btn-lg.home {
     flex-grow: 1;
     width: 50%;
     margin-left: 5px;
     text-align: center;
     padding: 8px;
-    border: 1px solid black;
+    border: 1px solid gainsboro;
+}
+
+button.btn.btn-outline-dark.btn-lg.home > a {
+color: white;
 }
 
 .background-image {
-    height: 150%;
+    position: absolute;
     width: 100%;
-    background-image: url('./images/DnD_background.jpeg');
+    height: 600px;
+    background: url('./images/DnD_background.jpeg') no-repeat;
 }
 
-h1 {
-    text-align: center;
-    padding-top: 300px;
+.welcome {
+    text-align: left;
+    padding-left: 80px;
+    padding-top: 280px;
+    margin-right: 250px;
     color: white;
 }
 
-p {
-    text-align: center;
-    color: white;
+.welcome h1 {
+    background-color: gainsboro;
+    border-radius: 20px;
+    text-align: left;
+    align-items: center;
+    padding-left: 50px;
+    color: black;
 }
+
+.welcome h3 {
+    text-align: left;
+    align-items: center;
+    padding-left: 50px;
+    color: black;
+}
+

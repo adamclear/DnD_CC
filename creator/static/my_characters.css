@@ -1,20 +1,28 @@
-h3 .mb-3.username{
-    margin-top: 30px;
-    background-color: #bd1f0a;
+h1.mb-3.username{
+    color: #bd1f0a;
+    margin-top: 20px;
     padding: 15px;
-    text-align: center;
+    text-align: left;
     border-radius: 15px;
 }
 
-.NewExist button > a {
-    color: #bd1f0a;
+.my_chars_cnc {
+    display: flex;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 10px;
+    margin-top: 0px;
 }
+div button.btn.btn-outline-danger.btn-lg.cnc {
+    text-align: center;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+/* .NewExist button > a {
+    color: #bd1f0a;
+} */
 
 div .media-body {
     border-radius: 15px;
-}
-
-button.btn.btn-outline-danger.btn-lg.cnc {
-    text-align: center;
-    margin-left: 25%;
 }
