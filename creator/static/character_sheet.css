@@ -1,0 +1,24 @@
+/* .background {
+    width: 100%;
+    background-image: url('./images/DnD_background.jpeg') !important;
+    background-repeat: no-repeat !important;
+    background-position: center 0px !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+} */
+
+.name_info {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    columns: 3;
+    border: 1px solid black;
+}
+
+.name_info div {
+    padding: 0;
+    margin: 0;
+    width: 30%;
+    color: black;
+    flex-grow: 1;
+}
