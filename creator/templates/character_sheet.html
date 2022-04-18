@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h2>{{ character.name }}</h2>
-    <h3>Level {{ character.level }} {{ character.ancestry }} {{ character.heroic_class }}</h3>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h2>{{ character.name }}</h2>
+            <h3>Level {{ character.level }} {{ character.ancestry }} 
+                {% if character.subclass %}
+                    {{ character.subclass }}
+                {% endif %}
+                {{ character.heroic_class }}</h3>
+        </div>
+    </div>
     <section class="NewExist">
         <button type="button" class="btn btn-outline-danger btn-sm">
             <a href="{{ url_for('characters.level_up', character_id=character.id) }}">Level Up</a>
@@ -13,69 +22,156 @@
             <a href="{{ url_for('characters.delete', character_id=character.id) }}">Delete</a>
         </button>
     </section>
-    <p> </p>
-    <div class="ability_scores">
-        <div class="per_stat">
-            <h2>STR</h2>
-            <h4>{{ character.strength }}</h4>
-            +{{ str_mod }}
-        </div>
-        <div class="per_stat">
-            <h2>DEX</h2>
-            <h4>{{ character.dexterity }}</h4>
-            +{{ dex_mod }}
-        </div>
-        <div class="per_stat">
-            <h2>CON</h2>
-            <h4>{{ character.constitution }}</h4>
-            +{{ con_mod }}
-        </div>
-        <div class="per_stat">
-            <h2>INT</h2>
-            <h4>{{ character.intelligence }}</h4>
-            +{{ int_mod }}
-        </div>
-        <div class="per_stat">
-            <h2>WIS</h2>
-            <h4>{{ character.wisdom }}</h4>
-            +{{ wis_mod }}
-        </div>
-        <div class="per_stat">    
-            <h2>CHA</h2>
-            <h4>{{ character.charisma }}</h4>
-            +{{ cha_mod }}
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h2>Ability Scores</h2>
+            <div class="ability_scores">
+                <div class="per_stat">
+                    <h2>STR</h2>
+                    <h4>{{ character.strength }}</h4>
+                    +{{ str_mod }}
+                </div>
+                <div class="per_stat">
+                    <h2>DEX</h2>
+                    <h4>{{ character.dexterity }}</h4>
+                    +{{ dex_mod }}
+                </div>
+                <div class="per_stat">
+                    <h2>CON</h2>
+                    <h4>{{ character.constitution }}</h4>
+                    +{{ con_mod }}
+                </div>
+                <div class="per_stat">
+                    <h2>HP</h2> 
+                    <h4>{{ char_hp }}</h4>
+                </div>
+                <div class="per_stat">
+                    <h2>AC</h2>
+                    <h4>{{ char_ac }}</h4>
+                </div>
+            </div>
+            <div class="ability_scores">
+                <div class="per_stat">
+                    <h2>INT</h2>
+                    <h4>{{ character.intelligence }}</h4>
+                    +{{ int_mod }}
+                </div>
+                <div class="per_stat">
+                    <h2>WIS</h2>
+                    <h4>{{ character.wisdom }}</h4>
+                    +{{ wis_mod }}
+                </div>
+                <div class="per_stat">    
+                    <h2>CHA</h2>
+                    <h4>{{ character.charisma }}</h4>
+                    +{{ cha_mod }}
+                </div>
+                <div class="per_stat">
+                    <h2>Prof Bonus</h2>
+                    <h4>+{{ prof_bonus }}</h4>
+                </div>
+            </div>
         </div>
     </div>
-    <h4>HP: {{ char_hp }}</h4>
-    <h4>AC: {{ char_ac }}</h4>
-    <h4>Prof Bonus: +{{ prof_bonus }}</h4>
-    <h4>Weapon:</h4>
-    {% for key, value in weapon_dict.items() %}
-            <h4>{{ key }}:</h4>
-            {{ value }}
-    {% endfor %}
-    <h4>Armor:</h4>
-        {% for key, value in armor_dict.items() %}
-            <h4>{{ key }}:</h4>
-            {{ value }}
-        {% endfor %}
-    <h4>{{ character.ancestry }} Traits:</h4>
-    {% if trait_dict %}
-        {% for key, value in trait_dict.items() %}
-            <h4>{{ key }}</h4>
-            {% for item in value %}
-                <p style="color: black">{{ item }}</p>
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <div class="ability_scores">
+                {% for key, value in weapon_dict.items() %}
+                    <div class="per_stat">
+                        <h4>{{ key }}:</h4>
+                        {{ value }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <div class="ability_scores">
+                {% for key, value in armor_dict.items() %}
+                    <div class="per_stat">
+                        <h4>{{ key }}:</h4>
+                        {{ value }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h4>{{ character.ancestry }} Traits</h4>
+            {% if trait_dict %}
+                {% for key, value in trait_dict.items() %}
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <h4>{{ key }}</h4>
+                                {% for item in value %}
+                                <p style="color: black">{{ item }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            {% elif character.ancestry == 'Human' %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <h4>Ability Score Increase</h4>
+                            <p style="color: black">Your ability scores each increase by 1.</p>
+                        </div>
+                    </div>
+                </article>
+            {% endif %}
+        </div>
+    </div>
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h4>{{ character.heroic_class }} Features</h4>
+            {% for key, value in feat_dict.items() %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <h4>{{ key }}</h4>
+                            {% for item in value %}
+                                <p style="color: black">{{ item }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </article>
             {% endfor %}
-        {% endfor %}
-    {% elif character.ancestry == 'Human' %}
-        <h4>Ability Score Increase</h4>
-            <p style="color: black">Your ability scores each increase by 1.</p>
-    {% endif %}
-    <h4>{{ character.heroic_class }} Features:</h4>
-    {% for key, value in feat_dict.items() %}
-        <h4>{{ key }}</h4>
-        {% for item in value %}
-            <p style="color: black">{{ item }}</p>
-        {% endfor %}
-    {% endfor %}
+        </div>
+    </div>
+</article>
+{% if subclass_dict %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h4>{{ character.subclass }} Features</h4>
+            {% for key, value in subclass_dict.items() %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <h4>{{ key }}</h4>
+                            {% for item in value %}
+                                <p style="color: black">{{ item }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</article>
+{% endif %}
 {% endblock content %}

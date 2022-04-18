@@ -1,7 +1,12 @@
 .ability_scores {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .per_stat {
-    padding: 4%;
+    padding: 3.70%;
+}
+
+.per_stat_asi {
+    padding: 2.75%;
 }

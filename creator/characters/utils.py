@@ -23,6 +23,7 @@ def roll_stats():
         if total < 8:
             total = 8
         Stat_array.append(total)
+        Stat_array.sort()
     return Stat_array
 
 def get_class_features(character_id):
@@ -32,13 +33,35 @@ def get_class_features(character_id):
     json_feat = json.loads(response.text)
     api_list = []
     feat_dict = {}
-    for x in range(character.level):
-        for k, v in json_feat[x].items():
-            if k == 'features':
-                for element in v:
-                    for key, value in element.items():
-                        if key == 'url':
-                            api_list.append(value)
+    for x in json_feat:
+        if x['level'] <= character.level:
+            for k, v in x.items():
+                if k == 'features':
+                    for element in v:
+                        for key, value in element.items():
+                            if key == 'url':
+                                api_list.append(value)
+    for x in api_list:
+        feat_resp = requests.get('https://www.dnd5eapi.co' + x)
+        feat_json = json.loads(feat_resp.text)
+        feat_dict[feat_json['name']] = feat_json['desc']
+    return feat_dict
+
+def get_subclass_features(character_id):
+    character = Character.query.get(character_id)
+    char_subclass = character.subclass.lower()
+    response = requests.get('https://www.dnd5eapi.co/api/subclasses/' + char_subclass + '/levels')
+    json_feat = json.loads(response.text)
+    api_list = []
+    feat_dict = {}
+    for x in json_feat:
+            if x['level'] <= character.level:
+                for k, v in x.items():
+                    if k == 'features':
+                        for element in v:
+                            for key, value in element.items():
+                                if key == 'url':
+                                    api_list.append(value)
     for x in api_list:
         feat_resp = requests.get('https://www.dnd5eapi.co' + x)
         feat_json = json.loads(feat_resp.text)
@@ -70,7 +93,7 @@ def get_weapon_info(character_id):
     char_weapon = character.weapon.lower()
     response = requests.get('https://www.dnd5eapi.co/api/equipment/' + char_weapon)
     json_weapon = json.loads(response.text)
-    weapon_dict['Name'] = json_weapon['name']
+    weapon_dict['Weapon'] = json_weapon['name']
     weapon_dict['Damage'] = json_weapon['damage']['damage_dice']
     weapon_dict['Damage Type'] = json_weapon['damage']['damage_type']['name']
     weapon_dict['Category'] = json_weapon['category_range']
@@ -95,7 +118,7 @@ def get_armor_info(character_id):
     if char_armor != 'Unarmored':
         response = requests.get('https://www.dnd5eapi.co/api/equipment/' + char_armor)
         json_armor = json.loads(response.text)
-        armor_dict['Name'] = json_armor['name']
+        armor_dict['Armor'] = json_armor['name']
         armor_dict['Category'] = json_armor['armor_category']
         armor_dict['Base Armor'] = json_armor['armor_class']['base']
         armor_dict['STR minimum'] = json_armor['str_minimum']

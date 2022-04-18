@@ -1,4 +1,96 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div>Hello!</div>
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Level Up {{ character.name }}</legend>
+            <div>
+                Here is your HP roll: {{ hp_roll }}
+            </div>
+            <div class="form-group">
+                {{ form.hp.label(class="form-control-label") }}
+
+                {% if form.hp.errors %}
+                    {{ form.hp(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.hp.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.hp(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        {% if asi == True %}
+            <div>
+                Here are your current Ability Scores:
+            </div>
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <div class="ability_scores">
+                            <div class="per_stat_asi">
+                                <h2>STR</h2>
+                                <h4>{{ character.strength }}</h4>
+                            </div>
+                            <div class="per_stat_asi">
+                                <h2>DEX</h2>
+                                <h4>{{ character.dexterity }}</h4>
+                            </div>
+                            <div class="per_stat_asi">
+                                <h2>CON</h2>
+                                <h4>{{ character.constitution }}</h4>
+                            </div>
+                            <div class="per_stat_asi">
+                                <h2>INT</h2>
+                                <h4>{{ character.intelligence }}</h4>
+                            </div>
+                            <div class="per_stat_asi">
+                                <h2>WIS</h2>
+                                <h4>{{ character.wisdom }}</h4>
+                            </div>
+                            <div class="per_stat_asi">    
+                                <h2>CHA</h2>
+                                <h4>{{ character.charisma }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>    
+            <legend class="border-bottom mb-4">Ability Score Improvement</legend>
+            <div class="form-group">
+                {{ form.ability_score_1.label(class="form-control-label") }}
+
+                {% if form.ability_score_1.errors %}
+                    {{ form.ability_score_1(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.ability_score_1.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.ability_score_1(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.ability_score_2.label(class="form-control-label") }}
+
+                {% if form.ability_score_2.errors %}
+                    {{ form.ability_score_2(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.ability_score_2.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.ability_score_2(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        {% endif %}
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</div>
+<div class="border-top pt-3"></div>
 {% endblock content %}
