@@ -69,11 +69,11 @@ def ability_scores(character_id):
                         db.session.commit()
                         flash(f'{character.name} gets to choose a subclass at level {character.level}.',
                             'success')
-                        return redirect(url_for('characters.subclass_choice', character_id=id))
+                        return redirect(url_for('characters.subclass_choice', character_id=character.id))
                     else:
                         db.session.commit()
                         flash(f'{character.name} has been created!', 'success')
-                        return redirect(url_for('characters.character_sheet', character_id=id))
+                        return redirect(url_for('characters.character_sheet', character_id=character.id))
             else:
                 form = AbilityScoreForm()
                 plus_two = form.plustwo.data
