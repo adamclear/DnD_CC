@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<h3 style="color: white" class="mb-3">{{ current_user.username }}'s Characters: {{ current_user.characters.total }}</h3>
+<h3 style="color: white" class="mb-3 username">{{ current_user.username }}'s Characters: {{ current_user.characters.total }}</h3>
 </article>    
     {% for character in current_user.characters %}
         <article class="media content-section">
@@ -25,8 +25,8 @@
                 </button>
             </section>
         </article>
-        <button type="button" class="btn btn-outline-danger btn-lg cnc">
-            <a class="mr-2" style="color: black" href="{{ url_for('characters.new_character') }}">Create a New Character</a>
-        </button>
     {% endfor %}
+    <button type="button" class="btn btn-outline-danger btn-lg cnc">
+        <a class="mr-2" style="color: black" href="{{ url_for('characters.new_character') }}">Create a New Character</a>
+    </button>
 {% endblock content %}
