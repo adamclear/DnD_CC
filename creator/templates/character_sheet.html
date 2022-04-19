@@ -28,50 +28,54 @@
         <div class="article-metadata ability_title">
             <h2>Ability Scores</h2>
             <div class="stat_container">
-                <div class="ability_scores">
-                    <div class="per_stat">
-                        <h3>STR</h3>
-                        <h4>{{ character.strength }}</h4>
-                        +{{ str_mod }}
-                    </div>
-                    <div class="per_stat">
-                        <h3>DEX</h3>
-                        <h4>{{ character.dexterity }}</h4>
-                        +{{ dex_mod }}
-                    </div>
-                    <div class="per_stat">
-                        <h3>CON</h3>
-                        <h4>{{ character.constitution }}</h4>
-                        +{{ con_mod }}
-                    </div>
-                    <div class="per_stat">
-                        <h3>HP</h3> 
-                        <h4>{{ char_hp }}</h4>
-                    </div>
-                    <div class="per_stat">
-                        <h3>AC</h3>
-                        <h4>{{ char_ac }}</h4>
+                <div class="row_col">
+                    <div class="ability_scores">
+                        <div class="per_stat">
+                            <h3>STR</h3>
+                            <h4>{{ character.strength }}</h4>
+                            +{{ str_mod }}
+                        </div>
+                        <div class="per_stat">
+                            <h3>DEX</h3>
+                            <h4>{{ character.dexterity }}</h4>
+                            +{{ dex_mod }}
+                        </div>
+                        <div class="per_stat">
+                            <h3>CON</h3>
+                            <h4>{{ character.constitution }}</h4>
+                            +{{ con_mod }}
+                        </div>
+                        <div class="per_stat">
+                            <h3>INT</h3>
+                            <h4>{{ character.intelligence }}</h4>
+                            +{{ int_mod }}
+                        </div>
+                        <div class="per_stat">
+                            <h3>WIS</h3>
+                            <h4>{{ character.wisdom }}</h4>
+                            +{{ wis_mod }}
+                        </div>
+                        <div class="per_stat">    
+                            <h3>CHA</h3>
+                            <h4>{{ character.charisma }}</h4>
+                            +{{ cha_mod }}
+                        </div>
                     </div>
                 </div>
-                <div class="ability_scores">
-                    <div class="per_stat">
-                        <h3>INT</h3>
-                        <h4>{{ character.intelligence }}</h4>
-                        +{{ int_mod }}
-                    </div>
-                    <div class="per_stat">
-                        <h3>WIS</h3>
-                        <h4>{{ character.wisdom }}</h4>
-                        +{{ wis_mod }}
-                    </div>
-                    <div class="per_stat">    
-                        <h3>CHA</h3>
-                        <h4>{{ character.charisma }}</h4>
-                        +{{ cha_mod }}
-                    </div>
-                    <div class="per_stat">
-                        <h3>Prof Bonus</h3>
-                        <h4>+{{ prof_bonus }}</h4>
+                <div class="row_col">
+                    <div class="ability_scores">
+                        <div class="per_stat">
+                            <h3>HP</h3> 
+                            <h4>{{ char_hp }}</h4>
+                        </div>
+                        <div class="per_stat">
+                            <h3>AC</h3>
+                            <h4>{{ char_ac }}</h4>
+                        </div>
+                        <div class="per_stat">
+                            <h3>Prof Bonus</h3>
+                            <h4>+{{ prof_bonus }}</h4>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -76,6 +76,13 @@ button.btn.btn-outline-danger.btn-sm.char_box > a {
     background-color: gainsboro;
 }
 
+.row_col {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+} 
+
 #blocks {
     background-color: gainsboro;
 }
