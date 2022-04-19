@@ -18,14 +18,14 @@
                     <small class="text-muted">Created on: {{ character.date_created.strftime('%Y-%m-%d') }}</small>
                 </div>
             </div>
-            <section class="NewExist">
-                <button type="button" class="btn btn-outline-danger btn-lg">
+            <section class="NewExist my_chars">
+                <button type="button" class="btn btn-outline-danger btn-lg my_chars">
                     <a href="{{ url_for('characters.level_up', character_id=character.id) }}">Level Up</a>
                 </button>
-                <button type="button" class="btn btn-outline-danger btn-lg" >
+                <button type="button" class="btn btn-outline-danger btn-lg my_chars" >
                     <a href="{{ url_for('characters.edit_character', character_id=character.id) }}">Edit</a>
                 </button>
-                <button type="button" class="btn btn-outline-danger btn-lg">
+                <button type="button" class="btn btn-outline-danger btn-lg my_chars">
                     <a href="{{ url_for('characters.delete', character_id=character.id) }}">Delete</a>
                 </button>
             </section>

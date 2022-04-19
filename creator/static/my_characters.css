@@ -19,9 +19,9 @@ div button.btn.btn-outline-danger.btn-lg.cnc {
     padding: 10px;
 }
 
-/* .NewExist button > a {
-    color: #bd1f0a;
-} */
+button.btn.btn-outline-danger.btn-lg.my_chars > a {
+    color: black;
+}
 
 div .media-body {
     border-radius: 15px;

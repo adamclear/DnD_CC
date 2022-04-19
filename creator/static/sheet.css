@@ -1,6 +1,83 @@
+h2.charName {
+    color: #bd1f0a
+}
+
+button.btn.btn-outline-danger.btn-sm.char_box > a {
+    color: black;
+}
+
+.article-metadata.ability_title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.article-metadata.ability_title > h2 {
+    color: #bd1f0a;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 5px;
+}
+
+.article-metadata.weapon {
+    text-align: center;
+}
+
+.article-metadata.weapon > h2 {
+    color: #bd1f0a;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.article-metadata.armor {
+    text-align: center;
+}
+
+.article-metadata.armor > h2 {
+    color: #bd1f0a;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.article-metadata.ancestry {
+    text-align: center;
+}
+
+.article-metadata.ancestry > h2 {
+    color: #bd1f0a;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.article-metadata.class {
+    text-align: center;
+}
+
+.article-metadata.class > h2 {
+    color: #bd1f0a;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.stat_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
 .ability_scores {
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
+    flex-grow: 1;
+    background-color: gainsboro;
+}
+
+#blocks {
+    background-color: gainsboro;
 }
 
 .per_stat {
