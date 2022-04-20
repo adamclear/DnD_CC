@@ -172,10 +172,11 @@
 {% if subclass_dict %}
 <article class="media content-section">
     <div class="media-body">
-        <div class="article-metadata">
-            <h4>{{ character.subclass }} Features</h4>
+        <div class="article-metadata class">
+            <h2>{{ character.subclass }} Features</h2>
+            <div class="stat_container"></div>
             {% for key, value in subclass_dict.items() %}
-                <article class="media content-section">
+                <article class="media content-section" id="blocks">
                     <div class="media-body">
                         <div class="article-metadata">
                             <h4>{{ key }}</h4>
@@ -186,6 +187,28 @@
                     </div>
                 </article>
             {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>
+{% endif %}
+{% if pact_boon %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata class">
+            <h2>Pact Boon</h2>
+            <div class="stat_container"></div>
+                <article class="media content-section" id="blocks">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <h4>{{ pact_boon.Name }}</h4>
+                            {% for item in pact_boon.Description %}
+                                <p style="color: black">{{ item }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
 </article>

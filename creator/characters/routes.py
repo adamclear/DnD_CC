@@ -1,11 +1,11 @@
 from creator import db
 from creator.models import Character
 from creator.characters.utils import (get_armor_info, get_class_features, 
-                                      get_char_traits, get_subclass_features, 
+                                      get_char_traits, get_pact_boon, get_subclass_features, 
                                       get_weapon_info, roll_stats)
 from creator.characters.forms import (AbilityScoreForm, AbilityScoreFormHuman, 
                                       EditCharacterForm, LevelUpForm, 
-                                      NewCharacterForm, SubclassForm)
+                                      NewCharacterForm, PactBoonForm, SubclassForm)
 from creator.users.utils import gen_id
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user
@@ -129,6 +129,10 @@ def character_sheet(character_id):
         trait_dict = get_char_traits(character.id)
         weapon_dict = get_weapon_info(character.id)
         armor_dict = get_armor_info(character.id)
+        if character.pact_boon:
+            pact_boon = get_pact_boon(character.id)
+        else:
+            pact_boon = None
         char_hp = character.calc_hp()
         char_ac = character.calc_ac()
         prof_bonus = character.calc_prof()
@@ -146,7 +150,7 @@ def character_sheet(character_id):
                                wis_mod=wis_mod, cha_mod=cha_mod,
                                char_ac=char_ac, prof_bonus=prof_bonus,
                                armor_dict=armor_dict, weapon_dict=weapon_dict,
-                               subclass_dict=subclass_dict)
+                               subclass_dict=subclass_dict, pact_boon=pact_boon)
     else:
         flash('Please login', 'danger')
         return redirect(url_for('users.login'))
@@ -297,4 +301,23 @@ def subclass_choice(character_id):
         flash('Please login', 'danger')
         return redirect(url_for('users.login'))
     return render_template('subclass.html', title=f"{character.name}'s Subclass", 
+                           form=form, character_id=character.id)
+
+@characters.route('/<string:character_id>/pact_boon_choice', methods=['GET', 'POST'])
+def pact_boon_choice(character_id):
+    if current_user.is_authenticated:
+        character = Character.query.get(character_id)
+        if character.player != current_user:
+            flash(f"{character.name} doesn't belong to you!")
+            return redirect(url_for('characters.my_characters'))
+        else:
+            form = PactBoonForm()
+            character.pact_boon = form.pact_boon.data
+            db.session.commit()
+            if form.validate_on_submit():
+                flash(f'Leveled up! {character.name} is now level {character.level}.',
+                        'success')
+                return redirect(url_for('characters.character_sheet',
+                                character_id=character.id))
+    return render_template('pact_boon.html', title=f"{character.name}'s Pact Boon",
                            form=form, character_id=character.id)

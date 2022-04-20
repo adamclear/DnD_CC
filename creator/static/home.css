@@ -21,7 +21,7 @@ color: white;
     position: absolute;
     width: 100%;
     height: 600px;
-    background: url('./images/DnD_background.jpeg') no-repeat;
+    background: url('./images/DnD_background.jpg') no-repeat;
 }
 
 .welcome {

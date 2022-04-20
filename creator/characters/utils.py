@@ -130,3 +130,16 @@ def get_armor_info(character_id):
     else:
         armor_dict['Name'] = 'Unarmored'
     return armor_dict
+
+def get_pact_boon(character_id):
+    pact_boon_dict = {}
+    character = Character.query.get(character_id)
+    pact_boon = character.pact_boon.lower()
+    if pact_boon:
+        response = requests.get('https://www.dnd5eapi.co/api/features/' + pact_boon)
+        json_pb = json.loads(response.text)
+        pact_boon_dict['Name'] = json_pb['name']
+        pact_boon_dict['Description'] = json_pb['desc']
+    else:
+        pact_boon_dict = None
+    return pact_boon_dict

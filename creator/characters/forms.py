@@ -85,3 +85,10 @@ class LevelUpForm(FlaskForm):
 class SubclassForm(FlaskForm):
     subclass = SelectField('Subclass', choices=[], validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class PactBoonForm(FlaskForm):
+    pact_boon = SelectField('Pact Boon', choices=[
+        '-Please Choose-', 'Pact-of-the-Chain', 'Pact-of-the-Blade', 
+        'Pact-of-the-Tome'
+    ], validators=[DataRequired()])
+    submit = SubmitField('Submit')
