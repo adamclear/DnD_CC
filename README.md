@@ -8,6 +8,7 @@ The HolB&D Character Creator is a simple rendering of a Dungeons and Dragons cha
 * Open up a webrowser and visit your localhost on port 5000. 
 ie. http://127.0.0.1:5000/
 * Register, login, and enjoy creating your characters!
+* (Warning: The registration and login components of this application are for demonstration purposes only. Please do not use any sensitive information. Only dummy data!!!!)
 
 ## Table of Content
 * [Environment](#environment)
